@@ -35,7 +35,10 @@ class User:
         cursor.close()      
         connection.close()  
         
-        return row is None
+        if row is not None:
+            return True 
+        else:
+            return False 
     
     
     def get_users():
@@ -44,6 +47,8 @@ class User:
         sql= "SELECT id, name, curp, account, password FROM user"
         cursor.execute(sql)
         rows=cursor.fetchall()
+        cursor.close()
+        connection.close()
         return[
             User(
                     id=row["id"],
@@ -61,6 +66,8 @@ class User:
         
         cursor.execute(sql,(account,)) # una tupla que contiene un elemento, para que lo considere como tupla se le pone la ,
         row= cursor.fetchone()
+        cursor.close()
+        connection.close()
         if row is None: 
             return None
         else:
