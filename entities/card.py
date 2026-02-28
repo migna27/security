@@ -8,6 +8,7 @@ class Card:
         self.number = number
         self.type = type
         self.id_usuario = id_usuario
+        self.Banco = Banco
 
 
     def card_insert(number, type, id_usuario, Banco):
@@ -24,7 +25,7 @@ class Card:
     def get_cards_by_user_id(id_usuario):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
-        sql = "SELECT id, number, type, id_usuario, Banco, FROM card WHERE id_usuario = %s"
+        sql = "SELECT id, number, type, id_usuario, Banco FROM card WHERE id_usuario = %s"
         cursor.execute(sql, (id_usuario,))
         rows = cursor.fetchall()
         cursor.close()
